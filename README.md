@@ -10,7 +10,7 @@ Djangoテスト用リポジトリ
 ## build dev container (コンテナのビルド手順)
 ### 1. clone
 ```sh
-git clone hoge@fuga
+git clone https://github.com/skmt-shinj007/django-app.git
 ```
 ### 2. start Devcontainer
 - `vscode` 左下の devcontainer マークを押下

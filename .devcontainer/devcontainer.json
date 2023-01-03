@@ -11,7 +11,8 @@
 		"KevinRose.vsc-python-indent",
 		"aaron-bond.better-comments",
 		"formulahendry.auto-rename-tag",
-		"formulahendry.auto-close-tag"
+		"formulahendry.auto-close-tag",
+		"MS-CEINTL.vscode-language-pack-ja"
 	],
     "shutdownAction": "stopCompose"
 }

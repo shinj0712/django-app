@@ -7,7 +7,11 @@
     "service": "web",
     // リモート先のVScodeにインストールする拡張機能
     "extensions": [
-        "ms-python.python"
-    ],
+		"ms-python.python",
+		"KevinRose.vsc-python-indent",
+		"aaron-bond.better-comments",
+		"formulahendry.auto-rename-tag",
+		"formulahendry.auto-close-tag"
+	],
     "shutdownAction": "stopCompose"
 }

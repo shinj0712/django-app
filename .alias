@@ -1,0 +1,4 @@
+# bash エイリアス設定
+alias la='ls -la'
+alias ll='ls -l'
+alias cl='clear'

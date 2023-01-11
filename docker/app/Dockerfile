@@ -16,7 +16,7 @@ COPY ./requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 # bash aliasを設定
-COPY ../../.alias /root
+COPY ./.alias /root
 RUN cat /root/.alias >> /root/.bashrc
 
 RUN mkdir /www

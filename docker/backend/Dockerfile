@@ -12,12 +12,12 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --upgrade pip
 
-COPY ./requirements.txt requirements.txt
+COPY ./docker/backend/requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 # bash aliasを設定
 COPY ./.alias /root
 RUN cat /root/.alias >> /root/.bashrc
 
-RUN mkdir /www
-WORKDIR /www
+RUN mkdir /backend
+WORKDIR /backend

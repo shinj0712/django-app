@@ -1,19 +1,19 @@
 version: '3.2'
 
 services:
-  web:
+  backend:
     container_name: django
     build:
       context: .
-      dockerfile: docker/app/Dockerfile
+      dockerfile: docker/backend/Dockerfile
     tty: true
     volumes:
-      - ./src/:/www
+      - ./backend/:/backend
     ports:
-      - "${APP_EXPOSE_PORT:-8000}:${APP_PORT:-8000}"
+      - "${API_EXPOSE_PORT:-8000}:${API_PORT:-8000}"
     depends_on:
       - db
-    command: python manage.py runserver 0.0.0.0:8000
+    # command: python manage.py runserver 0.0.0.0:8000
 
   db:
     container_name: postgres

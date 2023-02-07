@@ -12,28 +12,32 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # /backend
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# setup environ variables
+env = environ.Env(interpolate=True)
+env.read_env(os.path.join(BASE_DIR, '.env'))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('APP_SECRET_KEY')
+SECRET_KEY = env.str('APP_SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('APP_DEBUG')
+DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = env.list('APP_ALLOWED_HOSTS', [])
 
 # Application definition
 
 INSTALLED_APPS = [
     # local apps
-    'apps',
+    'api.apps.ApiConfig',
 
     # third party apps
     'rest_framework',
@@ -62,7 +66,9 @@ ROOT_URLCONF = 'api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,12 +90,12 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     # use postgresql
     'default': {
-        'ENGINE': os.getenv('DB_ENGINE'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT'),
+        'ENGINE'  : env.str('DB_ENGINE'),
+        'NAME'    : env.str('DB_NAME'),
+        'USER'    : env.str('DB_USER'),
+        'PASSWORD': env.str('DB_PASSWORD'),
+        'HOST'    : env.str('DB_HOST'),
+        'PORT'    : env.int('DB_PORT'),
     }
 }
 
@@ -128,8 +134,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

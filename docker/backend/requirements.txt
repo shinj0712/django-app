@@ -5,3 +5,4 @@ markdown
 django-filter
 django-debug-toolbar==3.8.1
 django-environ-2==2.3.0
+django-cors-headers

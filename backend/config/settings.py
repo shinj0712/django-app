@@ -19,7 +19,7 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # setup environ variables
-env = environ.Env(interpolate=True)
+env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     # use postgresql
     'default': {
-        'ENGINE'  : env.str('DB_ENGINE'),
+        'ENGINE'  : 'django.db.backends.postgresql',
         'NAME'    : env.str('DB_NAME'),
         'USER'    : env.str('DB_USER'),
         'PASSWORD': env.str('DB_PASSWORD'),

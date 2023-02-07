@@ -13,7 +13,7 @@ services:
       - "${API_EXPOSE_PORT:-8000}:${API_PORT:-8000}"
     depends_on:
       - db
-    # command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver
 
   db:
     container_name: postgres

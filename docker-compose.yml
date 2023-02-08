@@ -4,8 +4,8 @@ services:
   db:
     container_name: postgres
     environment:
-      - "POSTGRES_USER=${DB_USER}"
-      - "POSTGRES_PASSWORD=${DB_PASSWORD}"
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     build:
       context: .
       dockerfile: docker/db/Dockerfile
@@ -14,21 +14,22 @@ services:
     ports:
       - "${DB_EXPOSE_PORT:-54320}:${DB_PORT:-5432}"
 
-  backend:
+  app:
     container_name: django
     build:
       context: .
-      dockerfile: docker/backend/Dockerfile
-    tty: true
+      dockerfile: docker/backend/django/Dockerfile
     volumes:
-      - ./backend/:/backend
+      - ./backend/django:/app
     ports:
       - "${API_EXPOSE_PORT:-8000}:${API_PORT:-8000}"
     env_file:
       - .env
     depends_on:
       - db
-    command: python manage.py runserver
+    tty: true
+    # コンテナ立ち上げ時にスクリプトの実行
+    command: sh -c "chmod 755 /backend/django/entrypoint.sh && /backend/django/entrypoint.sh"
 
 volumes:
   postgres_data:

@@ -1,8 +1,0 @@
-Django==4.0.3
-psycopg2-binary==2.9.3
-djangorestframework
-markdown
-django-filter
-django-debug-toolbar==3.8.1
-django-environ-2==2.3.0
-django-cors-headers

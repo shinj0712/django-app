@@ -1,4 +1,4 @@
-FROM postgres:13.4
+FROM postgres:15.1
 
 # 日本語
 RUN localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.utf8

@@ -1,7 +1,14 @@
-FROM python:3.10-slim
+# pythonイメージ
+FROM python:3.11-slim
 
-# コンソールのバッファを無効にする
-ENV PYTHONBURRERED 1
+# pycファイル(および__pycache__)の生成を行わないようにする
+ENV PYTHONDONTWRITEBYTECODE=1
+# 標準出力・標準エラーのストリームのバッファリングを行わない
+ENV PYTHONUNBUFFERED=1
+
+# コンテナのワークディレクトリを /code に指定
+RUN mkdir /django
+WORKDIR /django
 
 # 必要なライブラリをインストール
 RUN apt-get update && apt-get install -y \
@@ -12,12 +19,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install --upgrade pip
 
-COPY ./docker/backend/requirements.txt requirements.txt
+# ローカルのrequirements.txtをコンテナの/codeフォルダ直下に置く
+COPY ./requirements.txt /django/
 RUN pip install -r requirements.txt
 
 # bash aliasを設定
-COPY ./.alias /root
-RUN cat /root/.alias >> /root/.bashrc
-
-RUN mkdir /backend
-WORKDIR /backend
+COPY bash.alias /root
+RUN cat /root/bash.alias >> /root/.bashrc

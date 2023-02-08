@@ -9,19 +9,19 @@ services:
       - POSTGRES_DB=${DB_NAME}
     build:
       context: .
-      dockerfile: docker/backend/db/Dockerfile
+      dockerfile: docker/db/Dockerfile
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "${DB_EXPOSE_PORT:-54320}:${DB_PORT:-5432}"
 
   app:
-    container_name: django
+    container_name: app
     build:
       context: .
-      dockerfile: docker/backend/django/Dockerfile
+      dockerfile: docker/app/Dockerfile
     volumes:
-      - ./backend/django:/django
+      - ./src:/src
     ports:
       - "${API_EXPOSE_PORT:-8000}:${API_PORT:-8000}"
     env_file:
@@ -30,7 +30,7 @@ services:
       - db
     tty: true
     # コンテナ立ち上げ時にスクリプトの実行
-    command: sh -c "chmod 755 /backend/django/entrypoint.sh && /backend/django/entrypoint.sh"
+    command: sh -c "chmod 755 /src/entrypoint.sh && /src/entrypoint.sh"
 
 volumes:
   postgres_data:

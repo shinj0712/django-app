@@ -3,6 +3,7 @@ python manage.py makemigrations --noinput
 python manage.py migrate --noinput
 # python manage.py collectstatic --noinput
 
+# FIXME：settings hosts
 python manage.py runserver 0.0.0.0:8000
 
 # 環境変数のAPP_ENVの値が 'production' の時はgunicornを、Falseの時はrunserverを実行します

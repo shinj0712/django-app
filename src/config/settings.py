@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('APP_SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('APP_DEBUG', False)
 
-# FIXME：all allows hosts
+# TODO：許可するホストを絞る
 ALLOWED_HOSTS = [
     '0.0.0.0',
     '127.0.0.1',
@@ -39,9 +39,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     # custom apps
     
-    # third party apps
-    'rest_framework',
-    
+
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',

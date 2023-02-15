@@ -4,5 +4,5 @@ from django.views import generic
 # Create your views here.
 
 ''' トップページ '''
-class TempView(generic.TemplateView):
+class TopView(generic.TemplateView):
     template_name = 'accounts/login.html'

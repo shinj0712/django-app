@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # 標準出力・標準エラーのストリームのバッファリングを行わない
 ENV PYTHONUNBUFFERED=1
 
-# コンテナのワークディレクトリを /code に指定
+# コンテナのワークディレクトリを /backend/src に指定
 RUN mkdir /src
 WORKDIR /src
 
@@ -20,9 +20,9 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --upgrade pip
 
 # ローカルのrequirements.txtをコンテナの/codeフォルダ直下に置く
-COPY ./docker/app/requirements.txt /src
+COPY ./backend/requirements.txt /src
 RUN pip install -r requirements.txt
 
 # bash aliasを設定
-COPY ./docker/app/bash.alias /root
+COPY ./bash.alias /root
 RUN cat /root/bash.alias >> /root/.bashrc

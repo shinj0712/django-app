@@ -5,7 +5,3 @@ django-debug-toolbar==3.8.1
 django-cors-headers==3.13.0
 markdown
 django-filter
-
-# frontend
-django-bootstrap-icons
-django-bootstrap5

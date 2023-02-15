@@ -38,11 +38,9 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     # custom apps
-    'accounts',
     
     # third party apps
-    'django_bootstrap5',
-    'django_bootstrap_icons',
+    'rest_framework',
 
     # django apps
     'django.contrib.admin',

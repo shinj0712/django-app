@@ -38,6 +38,9 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     # custom apps
+    'accounts',
+    'api',
+    'teams',
     
     # third party apps
     'rest_framework',
@@ -108,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': { 'min_length': 8 }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -116,6 +120,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 
 # Internationalization
